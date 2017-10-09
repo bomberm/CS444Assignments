@@ -1,10 +1,13 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <inttypes.h>
+#include <string.h>
 #include "functions.h"
 
 #define QUEUE_SIZE 32
+#define DEBUG_MODE 0
 
 struct buf_object{
   int payload;
@@ -22,6 +25,29 @@ struct queue{
   pthread_mutex_t lock;
 };
 
+typedef struct cpuid_struct {
+  unsigned int eax;
+  unsigned int ebx;
+  unsigned int ecx;
+  unsigned int edx;
+} cpuid_t;
+
+struct queue *create_buffer();
+void enqueue(struct queue *buffer, struct buf_object *object);
+struct buf_object dequeue(struct queue *buffer);
+void *producer_actions(void *buffer);
+void *consumer_actions(void *buffer);
+struct buf_object *make_object();
+int get_random(int min, int max);
+pthread_cond_t added_item;
+pthread_cond_t removed_item;
+int _is_intel_cpu();
+void cpuid (cpuid_t *info, unsigned int leaf, unsigned int subleaf);
+int get_drng_support();
+
+int is_supported;
+int rdrand32(uint32_t *rand);
+
 // Copied from intel website
 // https://software.intel.com/en-us/articles/intel-digital-random-number-generator-drng-software-implementation-guide
 //***************************
@@ -31,14 +57,6 @@ struct queue{
 #define DRNG_HAS_RDRAND 0x1
 #define DRNG_HAS_RDSEED 0x2
 
-int _is_intel_cpu();
-
-typedef struct cpuid_struct {
-	unsigned int eax;
-	unsigned int ebx;
-	unsigned int ecx;
-	unsigned int edx;
-} cpuid_t;
 
 int _is_intel_cpu ()
 {
@@ -71,7 +89,7 @@ void cpuid (cpuid_t *info, unsigned int leaf, unsigned int subleaf)
 }
 
 
-int get_drng_support ()
+int get_drng_support()
 {
 	static int drng_features= -1;
 
@@ -103,20 +121,6 @@ int get_drng_support ()
 
 // *******************************
 
-struct queue *create_buffer();
-void enqueue(struct queue *buffer, struct buf_object *object);
-struct buf_object dequeue(struct queue *buffer);
-void *producer_actions(void *buffer);
-void *consumer_actions(void *buffer);
-struct buf_object *make_object();
-int get_random(int min, int max);
-pthread_cond_t added_item;
-pthread_cond_t removed_item;
-
-int is_supported;
-int rdrand32(unsigned int rand);
-
-
 int main(void)
 {
   is_supported = get_drng_support();
@@ -128,9 +132,15 @@ int main(void)
 
   init_genrand(time(NULL));
   if(buffer == NULL){
+		if(DEBUG_MODE) {
+			printf("Failed to create buffer\n");
+			}
     returnValue = (-1);
   }
   else {
+		if(DEBUG_MODE) {
+			printf("Spawning threads\n");
+		}
     pthread_create(&producer, NULL, producer_actions, (void *)buffer);
     pthread_create(&consumer, NULL, consumer_actions, (void *)buffer);
     while(1);
@@ -141,13 +151,19 @@ int main(void)
   return returnValue;
 }
 
-int rdrand32(unsigned int rand)
+int rdrand32(uint32_t *rand)
 {
 	unsigned char ok;
 	
+	if(DEBUG_MODE){
+		printf("Executing assembly instruction.\n");
+	}
 	asm volatile ("rdrand %0; setc %1"
-			: "=r" (rand), "=qm" (ok));
+			: "=r" (*rand), "=qm" (ok));
 
+	if(DEBUG_MODE){
+		printf("Successfully executed assembly instruction\n");
+	}
 	return (int) ok;
 }
 
@@ -158,10 +174,13 @@ int get_random(int min, int max)
   if(is_supported){
     int retries = 10; // intel recomend retrying 10 times
     while(retries > 0){
-      unsigned int rand;
+      uint32_t *rand = malloc(sizeof(uint32_t));
       if(rdrand32(rand)){
+				if(DEBUG_MODE){
+					printf("Successfully returned from rdrand32\n");
+				}
         retries = 0;
-        returnVal = (int) rand;
+        returnVal = (((int) *rand)&(max-min+1))+min;
       }
       retries--;
     }
@@ -245,7 +264,7 @@ void *producer_actions(void *buffer)
   while(1)
   {
     enqueue((struct queue*)buffer, make_object());
-    sleep(get_random(3, 7)); //change to random once randomization is worked out
+    sleep(get_random(3, 7)); 
   }
 }
 
