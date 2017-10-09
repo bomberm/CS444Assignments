@@ -7,7 +7,7 @@
 #include "functions.h"
 
 #define QUEUE_SIZE 32
-#define DEBUG_MODE 0
+#define DEBUG_MODE 1
 
 struct buf_object{
   int payload;
@@ -186,6 +186,9 @@ int get_random(int min, int max)
     }
   }
   else{
+		if(DEBUG_MODE){
+			printf("No rdrand, using Mersenne Twister\n");
+		}
     returnVal = (genrand_int32()%(max-min+1))+min;
   }
   return returnVal;
@@ -225,8 +228,14 @@ void enqueue(struct queue *buffer, struct buf_object *object)
   pthread_mutex_lock(&buffer->lock);
 
   if(buffer->size==32){
+		if(DEBUG_MODE){
+			printf("Blocking until queue has space\n");
+		}
     pthread_cond_wait(&removed_item, &buffer->lock);
   }
+	if(DEBUG_MODE){
+		printf("Adding a new item to the queue\n");
+	}
   buffer->data[buffer->front].payload = object->payload;
   buffer->data[buffer->front].delay = object->delay;
 
@@ -244,9 +253,15 @@ struct buf_object dequeue(struct queue *buffer)
 
   pthread_mutex_lock(&buffer->lock);
   if(buffer->size == 0) {
+		if(DEBUG_MODE){
+			printf("Blocking until there is an item in the queue\n");
+		}
     pthread_cond_wait(&added_item, &buffer->lock);
   }
  
+	if(DEBUG_MODE){
+		printf("Removing an item from the queue\n");
+	}
   returnValue.payload = buffer->data[buffer->back].payload;
   returnValue.delay = buffer->data[buffer->back].delay;
     
