@@ -7,7 +7,7 @@
 #include "functions.h"
 
 #define QUEUE_SIZE 32
-#define DEBUG_MODE 1
+#define DEBUG_MODE 0
 
 struct buf_object{
   int payload;
