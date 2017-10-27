@@ -6,3 +6,9 @@
 #include "Philosopher.h"
 #include "Fork.h"
 #include "helperFunctions.h"
+
+enum pflag {
+	THINK,
+	HUNGRY,
+	EAT
+};

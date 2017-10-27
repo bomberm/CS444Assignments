@@ -1,4 +1,10 @@
 #include "diningPhilosophers.h"
+#include <thread>
+#include <mutex>
+
+std::mutex sem_lock;
+std::vector<pflag> phil_flags[5];
+
 
 int main(void)
 {
@@ -9,9 +15,11 @@ int main(void)
   
   assignForks(forks, philosophers);
 
-  beginEating(forks);
+	assignForks(forks, philosophers);
 
-  while(1);
+	beginEating(forks);
+
+	while (1);
 }
 
 Philosopher::Philosopher(std::string myName)
@@ -30,5 +38,13 @@ std::vector<Philosopher> loadPhilosophers()
   philosophers.push_back(Philosopher("Confucius"));
 
   return philosophers;
+}
+
+void down() {
+	sem_lock.lock;
+}
+
+void up() {
+	sem_lock.unlock();
 }
 
