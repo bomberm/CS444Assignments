@@ -34,20 +34,21 @@ philosophize(Philosopher thinker)
   }
 }
 
-Philosopher::Philosopher(std::string myName)
+Philosopher::Philosopher(std::string myName, int i)
 {
   name = myName;
+  index = i;
 };
 
 std::vector<Philosopher> loadPhilosophers()
 {
   std::vector<Philosopher> philosophers;
   
-  philosophers.push_back(Philosopher("Zeno"));
-  philosophers.push_back(Philosopher("Zedong"));
-  philosophers.push_back(Philosopher("Nietzsche"));
-  philosophers.push_back(Philosopher("Boole"));
-  philosophers.push_back(Philosopher("Confucius"));
+  philosophers.push_back(Philosopher("Zeno", 0));
+  philosophers.push_back(Philosopher("Boole", 1));
+  philosophers.push_back(Philosopher("Nietzsche", 2));
+  philosophers.push_back(Philosopher("Zedong", 3));
+  philosophers.push_back(Philosopher("Confucius", 4));
 
   return philosophers;
 }
@@ -67,7 +68,7 @@ void check_neighbors(int i)
 {
 	if (phil_flags[i] == HUNGRY    &&    phil_flags[(i + 1) % 5] != EAT    &&    phil_flags[(i - 1) % 5] != EAT) {
 		phil_flags[i] == EAT;
-		UP(semephorks[i]);
+		UP(semaphorks[i]);
 	}
 }
 
@@ -85,7 +86,7 @@ void takeforks(int i)
 	pflag[i] = HUNGRY;
 	check_neighbors(i);
 	up(sem);
-	down(semephorks[i]);
+	down(semaphorks[i]);
 }
 
 void eat(Philosopher thinker)
