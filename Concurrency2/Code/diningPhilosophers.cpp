@@ -3,7 +3,7 @@
 #include <mutex>
 
 int sem = 1; 
-std::vector<bool> sem_forks[5] {0,0,0,0,0};
+std::vector<bool> semephorks[5] {0,0,0,0,0};
 std::vector<pflag> phil_flags[5] {THINK, THINK, THINK, THINK, THINK};
 
 
@@ -16,11 +16,22 @@ int main(void)
   
   assignForks(forks, philosophers);
 
-	assignForks(forks, philosophers);
-
 	beginEating(forks);
 
 	while (1);
+}
+
+philosophize(Philosopher thinker)
+{
+  while(1);
+  {
+    think(thinker);
+    if(takeforks(thinker))
+    {
+      eat(thinker);
+    }
+    dropforks(thinker);
+  }
 }
 
 Philosopher::Philosopher(std::string myName)
