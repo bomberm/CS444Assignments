@@ -67,7 +67,7 @@ void check_neighbors(int i)
 {
 	if (phil_flags[i] == HUNGRY    &&    phil_flags[(i + 1) % 5] != EAT    &&    phil_flags[(i - 1) % 5] != EAT) {
 		phil_flags[i] == EAT;
-		UP(semaphorks[i]);
+		UP(semephorks[i]);
 	}
 }
 
@@ -85,7 +85,7 @@ void takeforks(int i)
 	pflag[i] = HUNGRY;
 	check_neighbors(i);
 	up(sem);
-	down(semaphorks[i]);
+	down(semephorks[i]);
 }
 
 void eat(Philosopher thinker)
