@@ -2,8 +2,9 @@
 #include <thread>
 #include <mutex>
 
-std::mutex sem_lock;
-std::vector<pflag> phil_flags[5];
+int sem = 1; 
+std::vector<bool> sem_forks[5] {0,0,0,0,0};
+std::vector<pflag> phil_flags[5] {THINK, THINK, THINK, THINK, THINK};
 
 
 int main(void)
@@ -41,10 +42,13 @@ std::vector<Philosopher> loadPhilosophers()
 }
 
 void down() {
-	sem_lock.lock;
+	while (sem <= 0) {
+		_sleep(1);
+	}
+	sem--;
 }
 
 void up() {
-	sem_lock.unlock();
+	sem++;
 }
 
