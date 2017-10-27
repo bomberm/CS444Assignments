@@ -3,5 +3,7 @@
 
 class Fork{
   std::unique_lock<std::mutex> inUse;
+
+  Fork::Fork();
 };
 
