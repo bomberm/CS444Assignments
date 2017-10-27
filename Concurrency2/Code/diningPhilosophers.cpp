@@ -1,8 +1,8 @@
 #include "diningPhilosophers.h"
 
 int sem = 1; 
-std::vector<bool> semephorks[5] {0,0,0,0,0};
-std::vector<pflag> phil_flags[5] {THINK, THINK, THINK, THINK, THINK};
+bool semaphorks[5] {false,false,false,false,false};
+pflag phil_flags[5] {THINK, THINK, THINK, THINK, THINK};
 
 
 int main(void)
@@ -22,26 +22,24 @@ int main(void)
 void beginEating(std::vector<Philosopher> thinkers)
 {
   std::thread first(philosophize, thinkers[0]);
-  std::thread second(philosophie, thinkers[1];
-  std::thread third(philosophie, thinkers[2];
-  std::thread forth(philosophie, thinkers[3];
-  std::thread fifth(philosophie, thinkers[4];
+  std::thread second(philosophize, thinkers[1]);
+  std::thread third(philosophize, thinkers[2]);
+  std::thread forth(philosophize, thinkers[3]);
+  std::thread fifth(philosophize, thinkers[4]);
   
   sem = 0;
 
   return;
 }
 
-philosophize(Philosopher thinker)
+void philosophize(Philosopher thinker)
 {
-  while(1);
+  while(1)
   {
     thinker.think();
-    if(takeforks(thinker))
-    {
-      thinker.eat();
-    }
-    dropforks(thinker);
+    thinker.takeForks();
+    thinker.eat();
+    thinker.dropForks();
   }
 }
 
@@ -66,7 +64,7 @@ std::vector<Philosopher> loadPhilosophers()
 
 void down(int s) {
 	while (s <= 0) {
-		_sleep(1);
+		sleep(1);
 	}
 	s--;
 }
@@ -78,26 +76,26 @@ void up(int s) {
 void check_neighbors(int i)
 {
 	if (phil_flags[i] == HUNGRY    &&    phil_flags[(i + 1) % 5] != EAT    &&    phil_flags[(i - 1) % 5] != EAT) {
-		phil_flags[i] == EAT;
-		UP(semaphorks[i]);
+		phil_flags[i] = EAT;
+		up(semaphorks[i]);
 	}
 }
 
-void dropforks(int i)
+void Philosopher::dropForks()
 {
 	down(sem);
-	check_neighbors(i - 1);
-	check_neighbors(i + 1);
+	check_neighbors(index - 1);
+	check_neighbors(index + 1);
 	up(sem);
 }
 
-void takeforks(int i)
+void Philosopher::takeForks()
 {
 	down(sem);
-	pflag[i] = HUNGRY;
-	check_neighbors(i);
+	phil_flags[index] = HUNGRY;
+	check_neighbors(index);
 	up(sem);
-	down(semaphorks[i]);
+	down(semaphorks[index]);
 }
 
 void 

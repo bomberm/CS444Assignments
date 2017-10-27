@@ -15,9 +15,9 @@ public:
   std::string name;
   int index; //philosophers location at the table
 
-  bool takeForks(int i);
+  void takeForks();
   void think();
   void eat();
-  void dropForks(int i);
+  void dropForks();
 };
 

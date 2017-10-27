@@ -6,6 +6,7 @@
 #include <ctime>
 #include <cstdlib>
 #include <unistd.h>
+#include <thread>
 #include "Philosopher.h"
 #include "Fork.h"
 #include "helperFunctions.h"
