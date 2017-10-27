@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include <mutex>
+#include <ctime>
+#include <cstdlib>
 #include "Philosopher.h"
 #include "Fork.h"
 #include "helperFunctions.h"

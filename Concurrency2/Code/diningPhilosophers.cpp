@@ -1,6 +1,4 @@
 #include "diningPhilosophers.h"
-#include <thread>
-#include <mutex>
 
 int sem = 1; 
 std::vector<bool> semephorks[5] {0,0,0,0,0};
@@ -14,6 +12,8 @@ int main(void)
   std::vector<Philosopher> philosophers;
   philosophers  = loadPhilosophers();
   
+  srand((unsigned)time(0));
+
   assignForks(forks, philosophers);
 
 	beginEating(forks);
@@ -86,4 +86,22 @@ void takeforks(int i)
 	check_neighbors(i);
 	up(sem);
 	down(semaphorks[i]);
+}
+
+void eat(Philosopher thinker)
+{
+  int wait = (rand()%9)+1);
+  std::cout << thinker << " is eating for " << wait << " seconds" << std::endl;
+  sleep(wait*1000);
+
+  return;
+}
+
+void think(Philosopher thinker)
+{
+  int wait = (rand()%20)+1;
+  std::cout << thinker << " is thinking for " << wait << " seconds" << std::endl;
+  sleep(wait*1000);
+  
+  return;
 }
