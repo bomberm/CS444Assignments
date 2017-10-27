@@ -13,11 +13,14 @@ int main(void)
   while(1);
 }
 
-Philosopher::Philosopher()
+Philosopher::Philosopher(string myName, which hand)
 {
-
+  name = myName;
+  handedness = hand;
 };
+
 std::vector loadPhilosophers()
 {
 
   std::vector<Philosopher> philosophers;
+  
