@@ -4,7 +4,8 @@ int main(void)
 {
 
   std::vector<Fork> forks;
-  std::vector<Philosopher> philosophers = loadPhilosophers();
+  std::vector<Philosopher> philosophers;
+  philosophers  = loadPhilosophers();
   
   assignForks(forks, philosophers);
 
@@ -13,14 +14,21 @@ int main(void)
   while(1);
 }
 
-Philosopher::Philosopher(string myName, which hand)
+Philosopher::Philosopher(std::string myName)
 {
   name = myName;
-  handedness = hand;
 };
 
-std::vector loadPhilosophers()
+std::vector<Philosopher> loadPhilosophers()
 {
-
   std::vector<Philosopher> philosophers;
   
+  philosophers.push_back(Philosopher("Zeno"));
+  philosophers.push_back(Philosopher("Zedong"));
+  philosophers.push_back(Philosopher("Nietzsche"));
+  philosophers.push_back(Philosopher("Boole"));
+  philosophers.push_back(Philosopher("Confucius"));
+
+  return philosophers;
+}
+
