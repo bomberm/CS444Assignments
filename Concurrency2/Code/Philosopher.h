@@ -13,7 +13,6 @@ class Philosopher{
 public:
   Philosopher(std::string myName, int i);
   std::string name;
-  Fork *left, *right;
   int index; //philosophers location at the table
 
   bool takeForks(int i);

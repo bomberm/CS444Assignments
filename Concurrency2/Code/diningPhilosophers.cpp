@@ -103,9 +103,9 @@ void takeforks(int i)
 void 
 Philosopher::eat()
 {
-  int wait = (rand()%9)+1);
+  int wait = (rand()%9)+1;
   std::cout << name << " is eating for " << wait << " seconds" << std::endl;
-  sleep(wait*1000);
+  sleep(wait);
 
   return;
 }
@@ -115,7 +115,7 @@ Philosopher::think()
 {
   int wait = (rand()%20)+1;
   std::cout << name << " is thinking for " << wait << " seconds" << std::endl;
-  sleep(wait*1000);
+  sleep(wait);
   
   return;
 }
