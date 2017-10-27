@@ -8,6 +8,12 @@ left,
 right
 };
 
+enum pflag {
+	THINK,
+	HUNGRY,
+	EAT
+};
+
 class Philosopher{
 
 public:
