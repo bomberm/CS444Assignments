@@ -15,8 +15,9 @@ public:
   std::string name;
   Fork *left, *right;
 
-  bool takeFork(which fork);
+  bool takeForks(int i);
   void think();
   void eat();
+  void dropForks(int i);
 };
 
