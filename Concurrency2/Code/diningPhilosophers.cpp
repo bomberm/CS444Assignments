@@ -14,21 +14,32 @@ int main(void)
   
   srand((unsigned)time(0));
 
-  assignForks(forks, philosophers);
-
-	beginEating(forks);
+	beginEating(philosophers);
 
 	while (1);
+}
+
+void beginEating(std::vector<Philosopher> thinkers)
+{
+  std::thread first(philosophize, thinkers[0]);
+  std::thread second(philosophie, thinkers[1];
+  std::thread third(philosophie, thinkers[2];
+  std::thread forth(philosophie, thinkers[3];
+  std::thread fifth(philosophie, thinkers[4];
+  
+  sem = 0;
+
+  return;
 }
 
 philosophize(Philosopher thinker)
 {
   while(1);
   {
-    think(thinker);
+    thinker.think();
     if(takeforks(thinker))
     {
-      eat(thinker);
+      thinker.eat();
     }
     dropforks(thinker);
   }
@@ -89,20 +100,24 @@ void takeforks(int i)
 	down(semaphorks[i]);
 }
 
-void eat(Philosopher thinker)
+void 
+Philosopher::eat()
 {
   int wait = (rand()%9)+1);
-  std::cout << thinker << " is eating for " << wait << " seconds" << std::endl;
+  std::cout << name << " is eating for " << wait << " seconds" << std::endl;
   sleep(wait*1000);
 
   return;
 }
 
-void think(Philosopher thinker)
+void 
+Philosopher::think()
 {
   int wait = (rand()%20)+1;
-  std::cout << thinker << " is thinking for " << wait << " seconds" << std::endl;
+  std::cout << name << " is thinking for " << wait << " seconds" << std::endl;
   sleep(wait*1000);
   
   return;
 }
+
+
