@@ -52,14 +52,38 @@ std::vector<Philosopher> loadPhilosophers()
   return philosophers;
 }
 
-void down() {
-	while (sem <= 0) {
+void down(int s) {
+	while (s <= 0) {
 		_sleep(1);
 	}
-	sem--;
+	s--;
 }
 
-void up() {
-	sem++;
+void up(int s) {
+	s++;
 }
 
+void check_neighbors(int i)
+{
+	if (phil_flags[i] == HUNGRY    &&    phil_flags[(i + 1) % 5] != EAT    &&    phil_flags[(i - 1) % 5] != EAT) {
+		phil_flags[i] == EAT;
+		UP(semaphorks[i]);
+	}
+}
+
+void dropforks(int i)
+{
+	down(sem);
+	check_neighbors(i - 1);
+	check_neighbors(i + 1);
+	up(sem);
+}
+
+void takeforks(int i)
+{
+	down(sem);
+	pflag[i] = HUNGRY;
+	check_neighbors(i);
+	up(sem);
+	down(semaphorks[i]);
+}
