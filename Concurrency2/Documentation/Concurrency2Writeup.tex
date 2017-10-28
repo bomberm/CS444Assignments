@@ -1,0 +1,104 @@
+\documentclass[letterpaper,10pt,titlepage]{article}
+
+\usepackage{graphicx}                                        
+\usepackage{amssymb}                                         
+\usepackage{amsmath}                                         
+\usepackage{amsthm}                                          
+
+\usepackage{alltt}                                           
+\usepackage{float}
+\usepackage{color}
+\usepackage{url}
+
+\usepackage{enumitem}
+%\usepackage{pstricks, pst-node}
+
+\usepackage{geometry}
+\geometry{textheight=10.25in, textwidth=7.75in}
+
+
+%random comment
+
+\newcommand{\cred}[1]{{\color{red}#1}}
+\newcommand{\cblue}[1]{{\color{blue}#1}}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+
+\def\name{Chris Bakkom and Marie Bomber}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+	colorlinks = true,
+	urlcolor = black,
+	pdfauthor = {\name},
+	pdfkeywords = {cs444 ``Operating Systems'' files Filesystem I/O},
+	pdftitle = {CS 444 Concurrency 2, The Dining Philosophers},
+	pdfsubject = {CS 444 Concurrency },
+	pdfpagemode = UseNone
+}
+%Title info
+\title{Concurrency 2}
+\author{\name}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	\pagebreak
+
+\section{Overview of Algorithm}
+The focus of this algorithm is that a single philosopher can only pick up both forks at the same time. So the first part is establishing mutual exclusion with this action. This is implemented as a semaphore so only one philosopher can take the action of picking up both of the forks next to them. The second part of the algorithm is figuring out if you can pick up forks. This is implemented with the philosopher’s state. The three states are EAT, THINK, and HUNGRY. The purpose of EAT is so that the neighbors of the eater can identify the forks that are in use. THINK is the opposite, showing the forks are not in use. HUNGRY is used to make sure that each philosopher has a chance to eat. This places a philosopher in a state of ‘waiting’ for the forks. Because adjacent philosophers can be hungry at the same time the relinquishing of the forks depends on the hungry state of the neighbors. So a philosopher cannot begin to be hungry while its neighbor is hungry. This ensures that every philosopher will have a chance to eat.
+\section{Testing}
+We were able to verify our algorithm was functioning as intended by checking the action print outs of each philosopher. The philosophers were assigned in a specific order so if two adjacent philosophers ate simultaneously, we would see the error. 
+
+\begin{tabular}{c | c | c}
+	Philosopher & Right-Hand Neighbor & Left Hand Neighbor \\ \hline
+	Zeno & Confucius & Boole \\ 
+	Boole & Zeno & Nietzsche \\
+	Nietzsche & Boole & Zedong \\
+	Zedong & Nietzche & Confucius \\
+\end{tabular}
+\section{Work log}
+\begin{tabular}{l l l}\textbf{Detail} & \textbf{Author} & \textbf{Description}\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/f06234991cc84d48aba38faac50b9970d0f2c6fa}{f062349} & Mary Bomber & Changed structure a bit so we can keep one repo for all concurrency assignments\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/452a8ecd02d1a46e8414b41ec0e320f344af323c}{452a8ec} & Mary Bomber & Merge branch 'master' of https://github.com/bomberm/CS444Assignments\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/d3f8b9a0263c9aa1ae076897900e3b007d0cd165}{d3f8b9a} & Mary Bomber & Cleaned up documentation\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/70dcefab72ecdb83be8b0b4bf0ba7e5b41ca4bfc}{70dcefa} & Mary Bomber & Removing files that have been moved\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/2d354bd09e3a57390710cf0f9a558450fe0c1e62}{2d354bd} & Mary Bomber & Basic structures being laid.\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/f7b17da1056e16bfae0336d1fadc9bbc09f4a99d}{f7b17da} & Mary Bomber & Another system check in\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/289be37e3f16bf33d7f6f915aff00fa9678ce742}{289be37} & Chris Bakkom & Added core structures\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/93fc237ea43a9067ad713578981c89bdf3ac63b2}{93fc237} & Chris Bakkom & Added pflag enum\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/95a419fb5709987b890fd9addb2d8e2465a92259}{95a419f} & Mary Bomber & Cleared up header dependency issues\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/72cffac75fc46ece61c49e97358aca383faf88a9}{72cffac} & Mary Bomber & Fixing merge issues\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/063e27bc35d15f29cd24881ae02caaeab96605b0}{063e27b} & Mary Bomber & Updated makefile\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/538627c2e3576cc41cb80b7736fc8f3a85bfbe7a}{538627c} & Mary Bomber & Added fork constructor\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/e32b1a7b30addbd67d01591e5deffcfed3e434ee}{e32b1a7} & Chris Bakkom & Changed semephore\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/26b79b152e69540431b48ef77ecdad5defd95977}{26b79b1} & Chris Bakkom & Add core functions\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/d775a9169f25609aaf820c8ff1fe91710a95b391}{d775a91} & Mary Bomber & Beginning main thread function\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/df52b9447aed8d477c901ca91433a53c605f7567}{df52b94} & Mary Bomber & Merge branch 'master' of https://github.com/bomberm/CS444Assignments\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/54a35a6aa206e5126a2ff4a5501ab937c851b7d3}{54a35a6} & Chris Bakkom & Changed semaphorks to semephorks\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/16035d89fb60ce8c0d41d016eccdffe21998d7f6}{16035d8} & Mary Bomber & Added think and eat functions\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/bd6a55a94a35f981817f2f1dfa9f948a076fdaa2}{bd6a55a} & Marie Bomber & Merge branch 'master' of https://github.com/bomberm/CS444Assignments\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/fd977d1b089dda5334bf71268423f535ccb824c1}{fd977d1} & Marie Bomber & Added index to philosopher\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/b92404c8ac0396e7fa421fe05f261191d88d40ce}{b92404c} & Marie Bomber & added threading\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/af8187394785e58ec865a9a04c211191b132e572}{af81873} & Marie Bomber & Fixed some errors in sleep and eat\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/90cc62768fe1073398fb494f4ddc0dd7c73d73d9}{90cc627} & Marie Bomber & Fixed compile errors, now core dumps but we're getting there\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/2970e52d08f69085d48a3a404d542bc16a0a9d7a}{2970e52} & Chris Bakkom & Add vs solution and fixed problem\\\hline
+	\href{https://github.com/bomberm/CS444Assignments/commit/ce6c4414124e9ed9280a337e3a79f1dd565e9b06}{ce6c441} & Marie Bomber & Exporting work log\\\hline\end{tabular}
+\\
+As we couldn't get latex-git-log to work and show times, this is the general timing:\\
+Chris\\
+
+10/26 6pm-11pm - researching dining problem and solutions to it. Source: https://www.cs.indiana.edu/classes/p415-sjoh/hw/project/dining-philosophers/index.htm\\
+Initial writing of the algorithm.\\
+
+10/27 6pm-11pm - fixing some issues and getting the algorithm working. Writing algorithm explanation.\\
+
+Marie:\\
+
+10/26 	1PM - 3PM Starting to set up basic helper algorithms\\
+		5PM - 11PM Creating underlying structures and headers, adding threading\\
+
+10/27	6AM - 7AM Fixing compiler errors and basic debugging\\
+		7PM - 9PM Documentation and final validation\\
+\end{document}
