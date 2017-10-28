@@ -3,6 +3,7 @@
 int sem = 1; 
 bool semaphorks[5] {false,false,false,false,false};
 pflag phil_flags[5] {THINK, THINK, THINK, THINK, THINK};
+std::mutex sem_lock;
 
 
 int main(void)
@@ -27,7 +28,9 @@ void beginEating(std::vector<Philosopher> thinkers)
   std::thread forth(philosophize, thinkers[3]);
   std::thread fifth(philosophize, thinkers[4]);
   
-  sem = 0;
+  sem = 1;
+
+  while (1);
 
   return;
 }
@@ -64,7 +67,9 @@ std::vector<Philosopher> loadPhilosophers()
 
 void down(int s) {
 	while (s <= 0) {
-		sleep(1);
+		sem_lock.unlock();
+		_sleep(1);
+		sem_lock.lock();
 	}
 	s--;
 }
@@ -73,37 +78,71 @@ void up(int s) {
 	s++;
 }
 
-void check_neighbors(int i)
+bool check_neighbors(int i)
 {
+	bool returnVal = false;
 	if (phil_flags[i] == HUNGRY    &&    phil_flags[(i + 1) % 5] != EAT    &&    phil_flags[(i - 1) % 5] != EAT) {
 		phil_flags[i] = EAT;
-		up(semaphorks[i]);
+		returnVal = true;
 	}
+	return returnVal;
 }
 
 void Philosopher::dropForks()
 {
+	sem_lock.lock();
 	down(sem);
-	check_neighbors(index - 1);
-	check_neighbors(index + 1);
+	sem_lock.unlock();
+
+	semaphorks[index] = false;
+	semaphorks[(index + 1) % 5] = false;
+	phil_flags[index] = THINK;
+
+	sem_lock.lock();
 	up(sem);
+	sem_lock.unlock();
 }
 
 void Philosopher::takeForks()
 {
-	down(sem);
+
 	phil_flags[index] = HUNGRY;
-	check_neighbors(index);
-	up(sem);
-	down(semaphorks[index]);
+
+	bool eating = false;
+
+	while (!eating) {
+		sem_lock.lock();
+		down(sem);
+		sem_lock.unlock();
+
+		eating = check_neighbors(index);
+
+		sem_lock.lock();
+		up(sem);
+		sem_lock.unlock();
+	}
+
+	
+
+	phil_flags[index] = EAT;
+
+	sem_lock.lock();
+	semaphorks[index] = true;
+	semaphorks[(index + 1) % 5] = true;
+	sem_lock.unlock();
 }
 
 void 
 Philosopher::eat()
 {
   int wait = (rand()%9)+1;
-  std::cout << name << " is eating for " << wait << " seconds" << std::endl;
-  sleep(wait);
+  //std::cout << name << " is eating for " << wait << " seconds" << std::endl;
+  std::string out = name;
+  out.append(" is eating for ");
+  out.append(std::to_string(wait) );
+  out.append( " seconds\n");
+  printf(out.c_str());
+  _sleep(wait * 1000);
 
   return;
 }
@@ -112,8 +151,13 @@ void
 Philosopher::think()
 {
   int wait = (rand()%20)+1;
-  std::cout << name << " is thinking for " << wait << " seconds" << std::endl;
-  sleep(wait);
+  //std::cout << name << " is thinking for " << wait << " seconds" << std::endl;
+  std::string out = name;
+  out.append(" is thinking for ");
+  out.append(std::to_string(wait));
+  out.append(" seconds\n");
+  printf(out.c_str());
+  _sleep(wait * 1000);
   
   return;
 }
