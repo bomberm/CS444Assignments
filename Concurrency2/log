@@ -1,0 +1,215 @@
+commit 1092c80a225043398a58b019c50517e2b18078d9
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-08
+
+    Initial version
+
+commit 8ccda9edaf6ae7cde9024144dc86337aee375c9b
+Author: Mars Bomber <bomberm@oregonstate.edu>
+Date:   2017-10-08
+
+    Fixed rdrand version
+
+commit 559aa5c71dc4481ec85d66bfa16abc825f25c774
+Author: Mars Bomber <bomberm@oregonstate.edu>
+Date:   2017-10-08
+
+    Added a few more debug statements
+
+commit 28a57620d1fb7fb13f9f884c999801ccd72479a8
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-09
+
+    Added tex file to main repo
+
+commit 3c2e7aedfcc78319605996830088b1afe51bed14
+Author: Mars Bomber <bomberm@oregonstate.edu>
+Date:   2017-10-09
+
+    Cleaned up code
+
+commit 55f1cd24209d4eea5962af6c21278b5592538576
+Merge: 3c2e7ae 28a5762
+Author: Mars Bomber <bomberm@oregonstate.edu>
+Date:   2017-10-09
+
+    Merge branch 'master' of https://github.com/bomberm/CS444Assignments
+
+commit 56aa6727c29c6c857ba64005378b36055c13ac4d
+Author: Mars Bomber <bomberm@oregonstate.edu>
+Date:   2017-10-09
+
+    Last refactor (hopefully)
+
+commit bb45c1749aba169901e9d8fda60e71c46eb071c8
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-09
+
+    Fix for compile errors
+
+commit 7072a00d06c80fc991b319a9b13d17bc066515f4
+Author: Mars Bomber <bomberm@oregonstate.edu>
+Date:   2017-10-09
+
+    Final commit
+
+commit f06234991cc84d48aba38faac50b9970d0f2c6fa
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Changed structure a bit so we can keep one repo for all concurrency assignments
+
+commit 452a8ecd02d1a46e8414b41ec0e320f344af323c
+Merge: f062349 7072a00
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Merge branch 'master' of https://github.com/bomberm/CS444Assignments
+
+commit d3f8b9a0263c9aa1ae076897900e3b007d0cd165
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Cleaned up documentation
+
+commit 70dcefab72ecdb83be8b0b4bf0ba7e5b41ca4bfc
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Removing files that have been moved
+
+commit 2d354bd09e3a57390710cf0f9a558450fe0c1e62
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Basic structures being laid.
+
+commit f7b17da1056e16bfae0336d1fadc9bbc09f4a99d
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Another system check in
+
+commit 289be37e3f16bf33d7f6f915aff00fa9678ce742
+Author: Chris Bakkom <chris.bakkom@gmail.com>
+Date:   2017-10-26
+
+    Added core structures
+    
+    Adding mutex lock, the semaphore
+    Added up and down for exclusive semaphore
+    Added pflags for what the philosophers are doing
+
+commit 93fc237ea43a9067ad713578981c89bdf3ac63b2
+Author: Chris Bakkom <chris.bakkom@gmail.com>
+Date:   2017-10-26
+
+    Added pflag enum
+
+commit 95a419fb5709987b890fd9addb2d8e2465a92259
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Cleared up header dependency issues
+
+commit 72cffac75fc46ece61c49e97358aca383faf88a9
+Merge: 95a419f 93fc237
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Fixing merge issues
+
+commit 063e27bc35d15f29cd24881ae02caaeab96605b0
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Updated makefile
+
+commit 538627c2e3576cc41cb80b7736fc8f3a85bfbe7a
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Added fork constructor
+
+commit e32b1a7b30addbd67d01591e5deffcfed3e434ee
+Author: Chris Bakkom <chris.bakkom@gmail.com>
+Date:   2017-10-26
+
+    Changed semephore
+
+commit 26b79b152e69540431b48ef77ecdad5defd95977
+Author: Chris Bakkom <chris.bakkom@gmail.com>
+Date:   2017-10-26
+
+    Add core functions
+    
+    Changed take fork function to key off philosopher int
+    Added drop fork function
+    changed up and down to general terms
+
+commit d775a9169f25609aaf820c8ff1fe91710a95b391
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Beginning main thread function
+
+commit df52b9447aed8d477c901ca91433a53c605f7567
+Merge: d775a91 26b79b1
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Merge branch 'master' of https://github.com/bomberm/CS444Assignments
+
+commit 54a35a6aa206e5126a2ff4a5501ab937c851b7d3
+Author: Chris Bakkom <chris.bakkom@gmail.com>
+Date:   2017-10-26
+
+    Changed semaphorks to semephorks
+    
+    lol
+
+commit 16035d89fb60ce8c0d41d016eccdffe21998d7f6
+Author: Mary Bomber <bomberm@os2.engr.oregonstate.edu>
+Date:   2017-10-26
+
+    Added think and eat functions
+
+commit bd6a55a94a35f981817f2f1dfa9f948a076fdaa2
+Merge: 16035d8 54a35a6
+Author: Marie Bomber <bomberm@oregonstate.edu>
+Date:   2017-10-26
+
+    Merge branch 'master' of https://github.com/bomberm/CS444Assignments
+
+commit fd977d1b089dda5334bf71268423f535ccb824c1
+Author: Marie Bomber <bomberm@oregonstate.edu>
+Date:   2017-10-26
+
+    Added index to philosopher
+
+commit b92404c8ac0396e7fa421fe05f261191d88d40ce
+Author: Marie Bomber <bomberm@oregonstate.edu>
+Date:   2017-10-26
+
+    added threading
+
+commit af8187394785e58ec865a9a04c211191b132e572
+Author: Marie Bomber <bomberm@oregonstate.edu>
+Date:   2017-10-27
+
+    Fixed some errors in sleep and eat
+
+commit 90cc62768fe1073398fb494f4ddc0dd7c73d73d9
+Author: Marie Bomber <bomberm@oregonstate.edu>
+Date:   2017-10-27
+
+    Fixed compile errors, now core dumps but we're getting there
+
+commit 2970e52d08f69085d48a3a404d542bc16a0a9d7a
+Author: Chris Bakkom <chris.bakkom@gmail.com>
+Date:   2017-10-27
+
+    Add vs solution and fixed problem
+    
+    Setting sem to 1 initiates the begin eating
+    You NEED mutex locks on the semaphore
