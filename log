@@ -1,0 +1,35 @@
+\begin{tabular}{l l l}\textbf{Detail} & \textbf{Author} & \textbf{Description}\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/1092c80a225043398a58b019c50517e2b18078d9}{1092c80} & Mary Bomber & Initial version\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/8ccda9edaf6ae7cde9024144dc86337aee375c9b}{8ccda9e} & Mars Bomber & Fixed rdrand version\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/559aa5c71dc4481ec85d66bfa16abc825f25c774}{559aa5c} & Mars Bomber & Added a few more debug statements\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/28a57620d1fb7fb13f9f884c999801ccd72479a8}{28a5762} & Mary Bomber & Added tex file to main repo\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/3c2e7aedfcc78319605996830088b1afe51bed14}{3c2e7ae} & Mars Bomber & Cleaned up code\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/55f1cd24209d4eea5962af6c21278b5592538576}{55f1cd2} & Mars Bomber & Merge branch 'master' of https://github.com/bomberm/CS444Assignments\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/56aa6727c29c6c857ba64005378b36055c13ac4d}{56aa672} & Mars Bomber & Last refactor (hopefully)\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/bb45c1749aba169901e9d8fda60e71c46eb071c8}{bb45c17} & Mary Bomber & Fix for compile errors\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/7072a00d06c80fc991b319a9b13d17bc066515f4}{7072a00} & Mars Bomber & Final commit\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/f06234991cc84d48aba38faac50b9970d0f2c6fa}{f062349} & Mary Bomber & Changed structure a bit so we can keep one repo for all concurrency assignments\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/452a8ecd02d1a46e8414b41ec0e320f344af323c}{452a8ec} & Mary Bomber & Merge branch 'master' of https://github.com/bomberm/CS444Assignments\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/d3f8b9a0263c9aa1ae076897900e3b007d0cd165}{d3f8b9a} & Mary Bomber & Cleaned up documentation\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/70dcefab72ecdb83be8b0b4bf0ba7e5b41ca4bfc}{70dcefa} & Mary Bomber & Removing files that have been moved\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/2d354bd09e3a57390710cf0f9a558450fe0c1e62}{2d354bd} & Mary Bomber & Basic structures being laid.\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/f7b17da1056e16bfae0336d1fadc9bbc09f4a99d}{f7b17da} & Mary Bomber & Another system check in\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/289be37e3f16bf33d7f6f915aff00fa9678ce742}{289be37} & Chris Bakkom & Added core structures\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/93fc237ea43a9067ad713578981c89bdf3ac63b2}{93fc237} & Chris Bakkom & Added pflag enum\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/95a419fb5709987b890fd9addb2d8e2465a92259}{95a419f} & Mary Bomber & Cleared up header dependency issues\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/72cffac75fc46ece61c49e97358aca383faf88a9}{72cffac} & Mary Bomber & Fixing merge issues\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/063e27bc35d15f29cd24881ae02caaeab96605b0}{063e27b} & Mary Bomber & Updated makefile\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/538627c2e3576cc41cb80b7736fc8f3a85bfbe7a}{538627c} & Mary Bomber & Added fork constructor\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/e32b1a7b30addbd67d01591e5deffcfed3e434ee}{e32b1a7} & Chris Bakkom & Changed semephore\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/26b79b152e69540431b48ef77ecdad5defd95977}{26b79b1} & Chris Bakkom & Add core functions\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/d775a9169f25609aaf820c8ff1fe91710a95b391}{d775a91} & Mary Bomber & Beginning main thread function\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/df52b9447aed8d477c901ca91433a53c605f7567}{df52b94} & Mary Bomber & Merge branch 'master' of https://github.com/bomberm/CS444Assignments\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/54a35a6aa206e5126a2ff4a5501ab937c851b7d3}{54a35a6} & Chris Bakkom & Changed semaphorks to semephorks\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/16035d89fb60ce8c0d41d016eccdffe21998d7f6}{16035d8} & Mary Bomber & Added think and eat functions\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/bd6a55a94a35f981817f2f1dfa9f948a076fdaa2}{bd6a55a} & Marie Bomber & Merge branch 'master' of https://github.com/bomberm/CS444Assignments\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/fd977d1b089dda5334bf71268423f535ccb824c1}{fd977d1} & Marie Bomber & Added index to philosopher\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/b92404c8ac0396e7fa421fe05f261191d88d40ce}{b92404c} & Marie Bomber & added threading\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/af8187394785e58ec865a9a04c211191b132e572}{af81873} & Marie Bomber & Fixed some errors in sleep and eat\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/90cc62768fe1073398fb494f4ddc0dd7c73d73d9}{90cc627} & Marie Bomber & Fixed compile errors, now core dumps but we're getting there\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/2970e52d08f69085d48a3a404d542bc16a0a9d7a}{2970e52} & Chris Bakkom & Add vs solution and fixed problem\\\hline
+\href{https://github.com/bomberm/CS444Assignments/commit/ce6c4414124e9ed9280a337e3a79f1dd565e9b06}{ce6c441} & Marie Bomber & Exporting work log\\\hline\end{tabular}
