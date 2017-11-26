@@ -68,7 +68,7 @@ std::vector<Philosopher> loadPhilosophers()
 void down(int s) {
 	while (s <= 0) {
 		sem_lock.unlock();
-		_sleep(1);
+		sleep(1);
 		sem_lock.lock();
 	}
 	s--;
@@ -142,7 +142,7 @@ Philosopher::eat()
   out.append(std::to_string(wait) );
   out.append( " seconds\n");
   printf(out.c_str());
-  _sleep(wait * 1000);
+  sleep(wait);
 
   return;
 }
@@ -157,7 +157,7 @@ Philosopher::think()
   out.append(std::to_string(wait));
   out.append(" seconds\n");
   printf(out.c_str());
-  _sleep(wait * 1000);
+  sleep(wait);
   
   return;
 }
