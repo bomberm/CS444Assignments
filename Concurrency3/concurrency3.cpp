@@ -26,12 +26,10 @@ int main(void)
     if(1 == choice)
     {
       problem1();
-      return 0;
     }
     else if (2 == choice)
     {
       problem2();
-      return 0;
     } 
     else
     {
@@ -66,7 +64,7 @@ void problem2()
   ListHandler *list_handler = new ListHandler();
 
   // Spawn processes
-  while(1)
+  while(true)
   {
     // Check if a deleter is waiting
     if (list_handler->isDeleting())
