@@ -9,10 +9,10 @@ sharedResource: sharedResource.cpp sharedResource.
 generalHelpers: generalHelpers.cpp generalHelpers.h
 	$(CXX) $(CXXFLAGS) -c generalHelpers.cpp -std=c++11
 
-listHelper: listHandler.cpp listHandler.h
+listHandler: listHandler.cpp listHandler.h
 	$(CXX) $(CXXFLAGS) -c -stdlib=libc++ listHandler.cpp -std=c++11
 
 clean: 
-	rm Concurrency generalHelpers.o sharedResource.o
+	rm Concurrency generalHelpers.o sharedResource.o listHandler.o
 
 
