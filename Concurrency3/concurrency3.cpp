@@ -63,4 +63,33 @@ void problem1()
 void problem2()
 {
   std::forward_list<int> *list = new std::forward_list<int>;
+  std::vector<std::thread> threads;
+
+  listHandler *list_handler = new listHandler;
+  bool deleter_waiting;
+
+  // Spawn processes
+  while(1)
+  {
+    // Check if a deleter is waiting
+    deleter_Waiting = list->isDeleting();
+    if (deleter_waiting)
+    {
+      sleep(2);
+    }
+
+    int process_choice = (rand() % 100)
+    // spawn searcher
+    if (process_choice < 40)
+        threads.emplace_back(searcher, listHandler, (rand() % 25));
+
+    // spawn inserter
+    if (process_choice >= 40 && process_choice < 70)
+        threads.emplace_back(inserter, listHandler, (rand() % 25));
+
+    // spawn deleter
+    if (process_choice >= 70)
+        threads.emplace_back(deleter, listHandler, (rand () % 25));
+  }
+
 }

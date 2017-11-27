@@ -1,20 +1,19 @@
-#include <forward_list>
 #include <iostream> 
-
+#include <list>
 
 enum triStateSuccess
 {
-  case blocked = (-1);
-  case notFound = 0;
-  case found = 1;
+  blocked = (-1),
+  notFound = 0,
+  found = 1
 };
 
-class ListHanlder
+class ListHandler
 {
 
 public:
-  ListManager();
-  ~ListManager();
+  ListHandler();
+  ~ListHandler();
   bool insert(int num);
   triStateSuccess remove(int num);
   triStateSuccess search(int num);
@@ -23,9 +22,9 @@ public:
   int numSearchers();
 
 private:
-  std::forward_list<int> list;
+  std::list<int> list;
   bool inserting;
   bool deleting;
   int searchers;
-}
+};
 

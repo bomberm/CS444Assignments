@@ -22,7 +22,6 @@ bool ListHandler::insert(int num)
   std::forward_list<int>::iterator iterator;
 
   iterator = list.insert_after(iterator, list.begin(), list.end());
-  std::cout << "Successfully inserted " << num << " at the end of the list." << std::endl;
 
   inserting = false;
 
@@ -69,3 +68,17 @@ triStateSuccess ListHandler::remove(int num)
   return notFound;
 }
 
+bool ListHandler::isInserting()
+{
+  return inserting;
+}
+
+bool ListHandler::isDeleting()
+{
+  return deleting;
+}
+
+int ListHandler::numSearchers()
+{
+  return searchers;
+}
