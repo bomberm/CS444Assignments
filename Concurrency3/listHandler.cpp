@@ -1,4 +1,4 @@
-include "listHandler.h"
+#include "listHandler.h"
 
 ListHandler::ListHandler()
 {
@@ -19,16 +19,16 @@ bool ListHandler::insert(int num)
   }
 
   inserting = true;
-  std::forward_list<int>::iterator iterator;
+  std::list<int>::iterator iterator;
 
-  iterator = list.insert_after(iterator, list.begin(), list.end());
+  list.push_back(num);
 
   inserting = false;
 
   return true;
 }
 
-searchSuccess ListHandler::search(int num)
+triStateSuccess ListHandler::search(int num)
 {
   if(deleting)
   {
@@ -37,7 +37,7 @@ searchSuccess ListHandler::search(int num)
 
   searchers++;
 
-  for( auto item : list)
+  for( int item : list)
   {
     if( item == num)
     {

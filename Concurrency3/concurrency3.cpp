@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <vector>
-#include <forward_list>
 #include "generalHelpers.h"
 #include "sharedResource.h"
 
@@ -62,34 +61,31 @@ void problem1()
 
 void problem2()
 {
-  std::forward_list<int> *list = new std::forward_list<int>;
   std::vector<std::thread> threads;
 
-  listHandler *list_handler = new listHandler;
-  bool deleter_waiting;
+  ListHandler *list_handler = new ListHandler();
 
   // Spawn processes
   while(1)
   {
     // Check if a deleter is waiting
-    deleter_Waiting = list->isDeleting();
-    if (deleter_waiting)
+    if (list_handler->isDeleting())
     {
       sleep(2);
     }
 
-    int process_choice = (rand() % 100)
+    int process_choice = (rand() % 100);
     // spawn searcher
     if (process_choice < 40)
-        threads.emplace_back(searcher, listHandler, (rand() % 25));
+        threads.emplace_back(searcher, list_handler, (rand() % 25));
 
     // spawn inserter
     if (process_choice >= 40 && process_choice < 70)
-        threads.emplace_back(inserter, listHandler, (rand() % 25));
+        threads.emplace_back(inserter, list_handler, (rand() % 25));
 
     // spawn deleter
     if (process_choice >= 70)
-        threads.emplace_back(deleter, listHandler, (rand () % 25));
+        threads.emplace_back(deleter, list_handler, (rand () % 25));
   }
 
 }

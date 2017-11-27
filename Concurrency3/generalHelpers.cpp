@@ -33,7 +33,7 @@ void consumeResource(SharedResource *resource)
 
 void inserter(ListHandler *list, int newElement)
 {
-  while(list->isInserting || list->isDeleting())
+  while(list->isInserting() || list->isDeleting())
   {
     std::cout << "Waiting for insertion/deletion to complete" << std::endl;
   }
@@ -51,7 +51,7 @@ void searcher(ListHandler *list, int num)
     std::cout << "Waiting for deletion." << std::endl;
   }
 
-  auto result = list->search(num);
+  triStateSuccess result = list->search(num);
   while(result == blocked)
   {
     result = list->search(num);
@@ -67,7 +67,7 @@ void searcher(ListHandler *list, int num)
   }
 }
 
-void deleter(ListHanlder *list, int num)
+void deleter(ListHandler *list, int num)
 {
 
   while(list->isDeleting())
@@ -75,11 +75,11 @@ void deleter(ListHanlder *list, int num)
     std::cout << "Waiting for deleter to finish." << std::endl;
   }
 
-  auto result = list->delete(num);
+  triStateSuccess result = list->remove(num);
   while(result == blocked)
   {
     std::cout << "Waiting for activity to calm before deleting." << std::endl;
-    result = list->delete(num);
+    result = list->remove(num);
   }
 
   if(result == found)
