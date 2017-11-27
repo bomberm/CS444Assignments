@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <vector>
+#include <forward_list>
 #include "generalHelpers.h"
 #include "sharedResource.h"
 
@@ -61,5 +62,5 @@ void problem1()
 
 void problem2()
 {
-  std::cout << "Bar" << std::endl;
+  std::forward_list<int> *list = new std::forward_list<int>;
 }
