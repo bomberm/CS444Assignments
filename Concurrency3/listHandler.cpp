@@ -19,7 +19,7 @@ bool ListHandler::insert(int num)
   }
 
   inserting = true;
-  std::list<int>::iterator iterator;
+  sleep(1); //waiting to make sure collisions happen
 
   list.push_back(num);
 
@@ -36,7 +36,7 @@ triStateSuccess ListHandler::search(int num)
   }
 
   searchers++;
-
+  sleep(1); //waiting to make sure collisions happen
   for( int item : list)
   {
     if( item == num)
@@ -60,6 +60,7 @@ triStateSuccess ListHandler::remove(int num)
   if(search(num) == found)
   {
     deleting = true;
+    sleep(1); //waiting to make sure collisions happen
     list.remove(num); 
     deleting = false;
     return found;

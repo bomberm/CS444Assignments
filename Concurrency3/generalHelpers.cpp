@@ -11,7 +11,7 @@ void consumeResource(SharedResource *resource)
   {
     std::cout << "Resource is fully consumed, waiting to try again" << std::endl;
     sleep(1); //wait one second and try again
-    mySlot == resource->use();
+    mySlot = resource->use();
   }
   
   sleepTime = (rand() % 5) + 1;
@@ -33,12 +33,12 @@ void consumeResource(SharedResource *resource)
 
 void inserter(ListHandler *list, int newElement)
 {
-  while(list->isInserting() || list->isDeleting())
+  if(!list->insert(newElement)) //first time give message
   {
     std::cout << "Waiting for insertion/deletion to complete" << std::endl;
   }
 
-  while(!list->insert(newElement));
+  while(!list->insert(newElement)); //the rest of the time, don't
 
   std::cout << "Successfully inserted " << newElement << " onto the list." << std::endl;
 
@@ -46,12 +46,13 @@ void inserter(ListHandler *list, int newElement)
 
 void searcher(ListHandler *list, int num)
 {
-  while(list->isDeleting())
+  triStateSuccess result = list->search(num);
+
+  if(result == blocked)
   {
     std::cout << "Waiting for deletion." << std::endl;
   }
 
-  triStateSuccess result = list->search(num);
   while(result == blocked)
   {
     result = list->search(num);
@@ -70,15 +71,15 @@ void searcher(ListHandler *list, int num)
 void deleter(ListHandler *list, int num)
 {
 
-  while(list->isDeleting())
-  {
-    std::cout << "Waiting for deleter to finish." << std::endl;
-  }
-
   triStateSuccess result = list->remove(num);
-  while(result == blocked)
+
+  if(result == blocked)
   {
     std::cout << "Waiting for activity to calm before deleting." << std::endl;
+  }
+
+  while(result == blocked)
+  {
     result = list->remove(num);
   }
 

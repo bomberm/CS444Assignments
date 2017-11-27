@@ -71,7 +71,7 @@ void problem2()
     // Check if a deleter is waiting
     if (list_handler->isDeleting())
     {
-      sleep(2);
+      sleep(5);
     }
 
     int process_choice = (rand() % 100);
@@ -86,6 +86,9 @@ void problem2()
     // spawn deleter
     if (process_choice >= 70)
         threads.emplace_back(deleter, list_handler, (rand () % 25));
+
+    threads.back().detach();
+    sleep(1);
   }
 
 }
